@@ -1,0 +1,14 @@
+[
+  {
+      "foodname": "Paneer Tikka",
+            "price" : "200"
+    },
+    {
+      "foodname": "Gobhi Manchurian",
+           "price" : "50"
+    },
+    {
+      "foodname": "Aaloo Pakora",
+      "price" : "100"
+    }
+]

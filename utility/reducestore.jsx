@@ -4,18 +4,15 @@ import {ReduceStore} from 'flux/utils';
 class TableReduceStore extends ReduceStore{
 	getInitialState(){
 		return{
-			aa:0,
-			tabledata:''
+			fooddata:''
 		}
 	}
 	reduce(state,action){
 		switch(action.payload){
 			case 'load':
-		    state.aa = state.aa+1; 
-		    state.tabledata = action.data
-		}
+		    state.fooddata = action.data
 		return Object.assign({},state)
+		}
 	}
 }
-
 export default TableReduceStore;

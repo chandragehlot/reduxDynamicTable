@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Table from './table';
+import TableContainer from './tablecontainer';
 
 
 ReactDOM.render(
-	<Table/>,document.getElementById('content')
+	<TableContainer/>,document.getElementById('content')
 )

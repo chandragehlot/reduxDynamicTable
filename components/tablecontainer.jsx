@@ -2,7 +2,7 @@ import React from 'react';
 import {Dispatcher} from 'flux';
 import TableReduceStore from '../utility/reducestore';
 import Table from './table';
-
+import serverCall from '../utility/httpRequest.js';
 
 class TableContainer extends React.Component{
 	constructor(){
@@ -10,6 +10,7 @@ class TableContainer extends React.Component{
 		this.state = {}
 		this.AppDispatcher = new Dispatcher()
 		this.store = new TableReduceStore(this.AppDispatcher)
+		this.callDispatch = this.callDispatch.bind(this)
 	}
 	componentDidMount(){
 		this.token = this.store.addListener(this.handleStoreChange.bind(this))	
@@ -21,21 +22,14 @@ class TableContainer extends React.Component{
 		this.setState(this.store.getState())
 	}
 	handleClick(){
-		var xhr  = new XMLHttpRequest()
-		xhr.onreadystatechange = function (){
-			if(xhr.readyState === 4 || xhr.readyState == XMLHttpRequest.DONE){
-				if(xhr.status === 200){
-					var response = eval(xhr.responseText);
-					this.AppDispatcher.dispatch({
-						payload : 'load',
-						data : response
-					})
-				} 
-			} 
-		}.bind(this); 
-		xhr.open('GET','/gettabledata',true);
-		xhr.send(null);
-		
+		//serverCall(method,url,responsehandler)
+		serverCall('GET','/gettabledata',this.callDispatch)
+	}
+	callDispatch(response){
+		this.AppDispatcher.dispatch({
+			payload : 'load',
+			data : response
+		})		
 	}
 	render(){
 		return(

@@ -11,8 +11,12 @@ class TableReduceStore extends ReduceStore{
 		switch(action.payload){
 			case 'load':
 		    state.fooddata = action.data
-		return Object.assign({},state)
+		    break;
+		    case 'error':
+		    state.error = action.data
+		    break;
 		}
+		return Object.assign({},state)
 	}
 }
 export default TableReduceStore;
